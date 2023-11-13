@@ -10,7 +10,13 @@ public class Player {
         this.score = score;
     }
 
-    private int score;
+    private int score = 0;
+
+    public int getNumberOfSteps() {
+        return numberOfSteps;
+    }
+
+    private int numberOfSteps = 0;
     public void setGameBoard(GameBoard gameBoard) {
         this.gameBoard = gameBoard;
     }
@@ -20,7 +26,6 @@ public class Player {
     public Player(GameBoard gameBoard, int arrows) {
         this.gameBoard = gameBoard;
         this.arrows = arrows;
-        this.score = arrows * 10;
     }
 
 
@@ -48,6 +53,7 @@ public class Player {
         if (isValidMove(newRow, newCol)) {
             // Ha érvényes, akkor frissítse a játékost a célmezőre
             gameBoard.setPlayerPosition(newRow, newCol, gameBoard.getPlayerDirection());
+            numberOfSteps++;
             System.out.println("A játékos sikeresen lépett.");
         } else {
             System.out.println("A játékos nem tud ide lépni, mert fal vagy a pálya szélén van.");
@@ -70,6 +76,7 @@ public class Player {
                 gameBoard.setPlayerPosition(gameBoard.getPlayerRow(), gameBoard.getPlayerCol(), 'S');
                 break;
         }
+        numberOfSteps++;
         System.out.println("A játékos jobbra fordult.");
     }
 
@@ -90,6 +97,7 @@ public class Player {
                 gameBoard.setPlayerPosition(gameBoard.getPlayerRow(), gameBoard.getPlayerCol(), 'N');
                 break;
         }
+        numberOfSteps++;
         System.out.println("A játékos balra fordult.");
     }
 
@@ -120,6 +128,7 @@ public class Player {
                 // Találat esetén a wumpusz eltávolítása
                 if (gameBoard.getCell(row, col) == 'U') {
                     gameBoard.setCell(row, col, '_');
+                    score++;
                     System.out.println("Gratulálok, eltaláltad a wumpuszt!");
                 } else {
                     System.out.println("A lövedék a semmibe veszett.");
@@ -143,6 +152,7 @@ public class Player {
         if (gameBoard.getCell(row, col) == 'G') {
             // Felvesszük az aranyat és beállítjuk, hogy a játékosnak van aranya
             gameBoard.setCell(row, col, '_');
+            score += 10;
             System.out.println("Aranyat szereztél!");
         } else {
             System.out.println("Itt nincs arany, nem tudsz felvenni.");
@@ -179,7 +189,7 @@ public class Player {
 
     public boolean hasGold() {
         // Ellenőrizzük, hogy a játékosnak van-e aranya
-        return gameBoard.getBoard()[gameBoard.getPlayerRow()][gameBoard.getPlayerCol()] == 'H';
+        return gameBoard.getBoard()[gameBoard.getPlayerRow()][gameBoard.getPlayerCol()] == 'G';
     }
 
     public boolean isAlive() {
@@ -189,12 +199,13 @@ public class Player {
     }
 
     public void printStatus() {
-        System.out.println("Játékos állapota:");
-        System.out.println("Pozíció: Sor " + (gameBoard.getPlayerRow() + 1) + ", Oszlop " + (gameBoard.getPlayerCol() + 1));
-        System.out.println("Irány: " + gameBoard.getPlayerDirection());
-        System.out.println("Nyilak száma: " + arrows);
+        System.out.println(gameBoard);
+        System.out.println("Jatekos allapota:");
+        System.out.println("Pozicio: Sor " + (gameBoard.getPlayerRow() + 1) + ", Oszlop " + (gameBoard.getPlayerCol() + 1));
+        System.out.println("Irany: " + gameBoard.getPlayerDirection());
+        System.out.println("Nyilak szama: " + arrows);
         System.out.println("Van aranya: " + hasGold());
-        System.out.println("Életben van: " + isAlive());
+        System.out.println("Eletben van: " + isAlive());
     }
 
     private boolean isValidMove(int row, int col) {

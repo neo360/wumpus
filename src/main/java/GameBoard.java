@@ -69,13 +69,13 @@ public class GameBoard {
 
     @Override
     public String toString() {
-        return "GameBoard{" +
-                "board=" + Arrays.toString(board) +
-                ", size=" + size +
-                ", playerRow=" + playerRow +
-                ", playerCol=" + playerCol +
-                ", playerDirection=" + playerDirection +
-                ", arrows=" + arrows +
-                '}';
+
+        StringBuilder boardString = new StringBuilder();
+
+        for (char[] row : board) {
+            boardString.append(Arrays.toString(row) + "\n");
+        }
+
+        return boardString.toString();
     }
 }

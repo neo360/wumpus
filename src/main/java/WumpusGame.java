@@ -9,7 +9,7 @@ public class WumpusGame {
         Scanner scanner = new Scanner(System.in);
 
         // Felhasználónév bekérése
-        System.out.print("Kérem, adja meg a felhasználó nevét: ");
+        System.out.print("Kerem, adja meg a felhasznalo nevet: ");
         String felhasznaloNev = scanner.nextLine();
 
         // Játék inicializálása
@@ -90,16 +90,25 @@ public class WumpusGame {
             // Ellenőrizze, hogy minden rész érvényes decimális szám-e
             int boardSize = Integer.parseInt(parts[0]);
             int heroColumn = heroColumns.get(parts[1]);
-            int heroRow = Integer.parseInt(parts[2]);
+            int heroRow = Integer.parseInt(parts[2]) - 1;
             char heroDirection = parts[3].charAt(0);
 
             // Inicializáljuk a játékteret
-            GameBoard gameBoard = new GameBoard(boardSize, heroColumn, heroRow, heroDirection);
+            GameBoard gameBoard = new GameBoard(boardSize, heroRow, heroColumn, heroDirection);
 
             // Olvassuk be a pályát soronként
             for (int i = 0; i < boardSize; i++) {
                 String line = scanner.nextLine();
                 gameBoard.setRow(i, line);
+            }
+
+            if (gameBoard.getCell(heroRow, heroColumn) != '_') {
+                System.out.println("A jatekos nem ures pozicion van. Kerem adjon meg egy olyan palyat amiben" +
+                        " a jatekos ures pozicioban van kezdetlegesen.");
+                System.exit(0);
+            } else if (gameBoard.getCell(heroRow, heroColumn) == 'G') {
+                System.out.println("A jatekos kezdeti pozicioja megegyezik az arany poziciojaval.");
+                System.exit(0);
             }
 
             return gameBoard;
@@ -118,7 +127,7 @@ public class WumpusGame {
             player.printStatus();
 
             // Játékos lépéseinek bekérése
-            System.out.print("Válasszon akciót (Lépés - L, Jobbra fordulás - J, Balra fordulás - B, Lövés - S, Arany felvétele - A, Kilépés - K): ");
+            System.out.print("Válasszon akciót (Lépés - L, Jobbra fordulás - J, Balra fordulás - B, Lövés - S, Arany felvétele - A, Kilépés (Feladas) - K): ");
             String action = scanner.nextLine().toUpperCase();
 
             // Végrehajtjuk a kiválasztott akciót
@@ -150,6 +159,8 @@ public class WumpusGame {
         // Játék vége
         if (player.isAlive() && player.hasGold()) {
             System.out.println("Gratulálok, teljesítetted a küldetést!");
+            System.out.println("Pontszamod: " + player.getScore() + " 1 pont wumpusonkent es 10 pont az arany felszedesert. ");
+            System.out.println("Lepeseid szama: " + player.getNumberOfSteps());
         } else {
             System.out.println("Játék vége. Kiestél vagy feladtad.");
         }
