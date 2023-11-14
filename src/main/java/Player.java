@@ -135,7 +135,9 @@ public class Player {
                 }
 
                 // Csökkentjük a nyilak számát
-                arrows--;
+                if (arrows > 0) {
+                    arrows--;
+                }
             } else {
                 System.out.println("A lövés nem érvényes, mert a célmező fal vagy a pálya szélén van.");
             }
@@ -155,20 +157,6 @@ public class Player {
             System.out.println("Aranyat szereztél!");
         } else {
             System.out.println("Itt nincs arany, nem tudsz felvenni.");
-        }
-    }
-
-    public void enterPit() {
-        int row = gameBoard.getPlayerRow();
-        int col = gameBoard.getPlayerCol();
-
-        // Ellenőrizzük, hogy a játékos a P (verem) mezőn áll-e
-        if (gameBoard.getCell(row, col) == 'P') {
-            // A játékos belelépett a verembe, tehát meghal
-            System.out.println("A játékos belelépett a verembe és meghalt.");
-            // Itt esetleg további teendők (pl. játék vége, stb.)
-        } else {
-            System.out.println("Itt nincs verem, nem tudsz belelépni.");
         }
     }
 
@@ -192,9 +180,9 @@ public class Player {
     }
 
     public boolean isAlive() {
-        // Ellenőrizzük, hogy a játékos a verem (P) vagy wumpusz (U) mezőn áll-e
+        // Ellenőrizzük, hogy a játékos a wumpusz (U) mezőn áll-e
         char currentCell = gameBoard.getBoard()[gameBoard.getPlayerRow()][gameBoard.getPlayerCol()];
-        return currentCell != 'P' && currentCell != 'U';
+        return currentCell != 'U';
     }
 
     public void printStatus() {
@@ -209,6 +197,15 @@ public class Player {
 
     private boolean isValidMove(int row, int col) {
         // Ellenőrizze, hogy a célmező érvényes
+
+        if (gameBoard.getCell(row,col) == 'P') {
+            System.out.println("" + row + " " + col);
+            //enterPit();
+            if (arrows > 0) {
+                arrows--;
+            }
+        }
+
         return row >= 0 && row < gameBoard.getSize() && col >= 0 && col < gameBoard.getSize() &&
                 gameBoard.getCell(row, col) != 'W'; // Ne lehet legyen wumpusz a célmezőn
     }
