@@ -1,8 +1,8 @@
 import java.util.Arrays;
 
 public class GameBoard {
-    private char[][] board;
-    private int size;
+    private final char[][] board;
+    private final int size;
     private int playerRow;
     private int playerCol;
     private char playerDirection;

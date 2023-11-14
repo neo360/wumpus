@@ -1,37 +1,27 @@
 public class Player {
-
-    public int getArrows() {
-        return arrows;
-    }
-
-    public void setArrows(int arrows) {
-        this.arrows = arrows;
-    }
-
     private int arrows;
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
     private int score = 0;
-
-    public int getNumberOfSteps() {
-        return numberOfSteps;
-    }
-
     private int numberOfSteps = 0;
-    public void setGameBoard(GameBoard gameBoard) {
-        this.gameBoard = gameBoard;
-    }
-
     private GameBoard gameBoard;
-
     public Player(GameBoard gameBoard, int arrows) {
         this.gameBoard = gameBoard;
         this.arrows = arrows;
     }
-
+    public void setArrows(int arrows) {
+        this.arrows = arrows;
+    }
+    public void setScore(int score) {
+        this.score = score;
+    }
+    public int getScore() {
+        return score;
+    }
+    public int getNumberOfSteps() {
+        return numberOfSteps;
+    }
+    public void setGameBoard(GameBoard gameBoard) {
+        this.gameBoard = gameBoard;
+    }
 
     public void move() {
         // Ellenőrizze, hogy a játékos mozgása lehetséges-e
@@ -164,20 +154,6 @@ public class Player {
         }
     }
 
-    public void enterWumpus() {
-        int row = gameBoard.getPlayerRow();
-        int col = gameBoard.getPlayerCol();
-
-        // Ellenőrizzük, hogy a játékos az U (wumpusz) mezőn áll-e
-        if (gameBoard.getCell(row, col) == 'U') {
-            // A játékos belelépett a wumpusz mezőre, tehát meghal
-            System.out.println("A játékos belelépett a wumpusz mezőre és meghalt.");
-            // Itt esetleg további teendők (pl. játék vége, stb.)
-        } else {
-            System.out.println("Itt nincs wumpusz, nem tudsz belelépni.");
-        }
-    }
-
     public boolean hasGold() {
         // Ellenőrizzük, hogy a játékosnak van-e aranya
         return gameBoard.getBoard()[gameBoard.getPlayerRow()][gameBoard.getPlayerCol()] == 'G';
@@ -200,8 +176,8 @@ public class Player {
     }
 
     private boolean isValidMove(int row, int col) {
-        // Ellenőrizze, hogy a célmező érvényes
 
+        // Itt ellenorizzuk hogy a hos nem-e lepett wumpusra
         if (gameBoard.getCell(row,col) == 'P') {
             System.out.println("" + row + " " + col);
             //enterPit();
@@ -210,17 +186,14 @@ public class Player {
             }
         }
 
+        // Ellenőrizuk, hogy a célmezőre valo lepes érvényes
         return row >= 0 && row < gameBoard.getSize() && col >= 0 && col < gameBoard.getSize() &&
                 gameBoard.getCell(row, col) != 'W'; // Ne lehet legyen wumpusz a célmezőn
     }
 
     private boolean isValidMoveforShooting(int row, int col) {
-        // Ellenőrizzük, hogy a célmező érvényes
+        // Ellenőrizzük, hogy a célmező érvényes-e a lovesre
         return row >= 0 && row < gameBoard.getSize() && col >= 0 && col < gameBoard.getSize();
-    }
-
-    public int getScore() {
-        return score;
     }
 
     @Override

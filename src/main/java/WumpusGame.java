@@ -114,7 +114,7 @@ public class WumpusGame {
             return gameBoard;
         } catch (Exception e) {
             e.printStackTrace();
-            return null; // Vagy kezeld a hibát a saját logikád szerint
+            return null;
         }
     }
 
@@ -162,7 +162,7 @@ public class WumpusGame {
             System.out.println("Pontszamod: " + (player.getScore() + 10) + " pont. 1 pont jar wumpusonkent es 10 pont az arany felszedesert. ");
             System.out.println("Lepeseid szama: " + player.getNumberOfSteps());
         } else {
-            System.out.println("Játék vége. Kiestél vagy feladtad.");
+            System.out.println("Játék vége. Vagy wumpusra leptel vagy feladtad.");
         }
     }
 }
