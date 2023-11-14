@@ -4,6 +4,10 @@ public class Player {
         return arrows;
     }
 
+    public void setArrows(int arrows) {
+        this.arrows = arrows;
+    }
+
     private int arrows;
 
     public void setScore(int score) {

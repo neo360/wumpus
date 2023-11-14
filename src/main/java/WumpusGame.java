@@ -15,7 +15,6 @@ public class WumpusGame {
         // Játék inicializálása
         GameBoard gameBoard = loadGameBoardFromFile();
         Player player = new Player(gameBoard, gameBoard.getArrows());
-        System.out.println("hos nyilainak szama: " + player.getArrows());
 
         // Adatbázis kezelő inicializálása
         DbHandler dbHandler = new DbHandler();
@@ -45,6 +44,7 @@ public class WumpusGame {
                     // Fájlból beolvasás
                     gameBoard = loadGameBoardFromFile();
                     player.setGameBoard(gameBoard);
+                    player.setArrows(gameBoard.getArrows());
                     break;
                 case 2:
                     // Adatbázisból betöltés
