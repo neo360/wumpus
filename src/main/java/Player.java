@@ -10,6 +10,11 @@ public class Player {
     public void setArrows(int arrows) {
         this.arrows = arrows;
     }
+
+    public int getArrows() {
+        return arrows;
+    }
+
     public void setScore(int score) {
         this.score = score;
     }
@@ -22,6 +27,8 @@ public class Player {
     public void setGameBoard(GameBoard gameBoard) {
         this.gameBoard = gameBoard;
     }
+
+    public GameBoard getGameBoard() { return this.gameBoard; }
 
     public void move() {
         // Ellenőrizze, hogy a játékos mozgása lehetséges-e
@@ -179,8 +186,6 @@ public class Player {
 
         // Itt ellenorizzuk hogy a hos nem-e lepett wumpusra
         if (gameBoard.getCell(row,col) == 'P') {
-            System.out.println("" + row + " " + col);
-            //enterPit();
             if (arrows > 0) {
                 arrows--;
             }
