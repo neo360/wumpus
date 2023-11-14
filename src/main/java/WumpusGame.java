@@ -159,7 +159,7 @@ public class WumpusGame {
         // Játék vége
         if (player.isAlive() && player.hasGold()) {
             System.out.println("Gratulálok, teljesítetted a küldetést!");
-            System.out.println("Pontszamod: " + player.getScore() + " 1 pont wumpusonkent es 10 pont az arany felszedesert. ");
+            System.out.println("Pontszamod: " + (player.getScore() + 10) + " pont. 1 pont jar wumpusonkent es 10 pont az arany felszedesert. ");
             System.out.println("Lepeseid szama: " + player.getNumberOfSteps());
         } else {
             System.out.println("Játék vége. Kiestél vagy feladtad.");

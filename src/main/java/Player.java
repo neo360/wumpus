@@ -152,7 +152,6 @@ public class Player {
         if (gameBoard.getCell(row, col) == 'G') {
             // Felvesszük az aranyat és beállítjuk, hogy a játékosnak van aranya
             gameBoard.setCell(row, col, '_');
-            score += 10;
             System.out.println("Aranyat szereztél!");
         } else {
             System.out.println("Itt nincs arany, nem tudsz felvenni.");
