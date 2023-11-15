@@ -48,13 +48,14 @@ public class WumpusGame {
                     break;
                 case 2:
                     // Adatbázisból betöltés
+                    System.out.println("Felhasználói pontszám betöltése az adatbázisból...");
                     int loadedScore = dbHandler.loadFromDatabase(felhasznaloNev);
-                    player.setScore(loadedScore);
-                    System.out.println("A játékállás betöltve az adatbázisból.");
+                    System.out.println("Felhasználói pontszám: " + loadedScore);
                     break;
                 case 3:
+                    // Adatbázisba mentés
+                    System.out.println("Felhasználói pontszám mentése az adatbázisba...");
                     dbHandler.saveToDatabase(felhasznaloNev, player.getScore());
-                    System.out.println("A játékállás mentve az adatbázisba.");
                     break;
                 case 4:
                     // Játszás
