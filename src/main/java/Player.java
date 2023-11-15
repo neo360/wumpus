@@ -1,12 +1,31 @@
 public class Player {
     private int arrows;
     private int score = 0;
+
+    public void setNumberOfSteps(int numberOfSteps) {
+        this.numberOfSteps = numberOfSteps;
+    }
+
     private int numberOfSteps = 0;
+
+    private boolean isAlive;
+
+    public void setHasGold(boolean hasGold) {
+        this.hasGold = hasGold;
+    }
+
+    private boolean hasGold;
     private GameBoard gameBoard;
     public Player(GameBoard gameBoard, int arrows) {
         this.gameBoard = gameBoard;
         this.arrows = arrows;
+        this.isAlive = true;
     }
+
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
+
     public void setArrows(int arrows) {
         this.arrows = arrows;
     }

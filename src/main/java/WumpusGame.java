@@ -71,7 +71,7 @@ public class WumpusGame {
         }
     }
 
-    private static GameBoard loadGameBoardFromFile() {
+    static GameBoard loadGameBoardFromFile() {
         ClassLoader classLoader = WumpusGame.class.getClassLoader();
         try (InputStream inputStream = classLoader.getResourceAsStream("wumpuszinput.txt");
              Scanner scanner = new Scanner(inputStream)) {
@@ -119,7 +119,7 @@ public class WumpusGame {
         }
     }
 
-    private static void playGame(Player player) {
+    static void playGame(Player player) {
         Scanner scanner = new Scanner(System.in);
 
         // Játékmenet
