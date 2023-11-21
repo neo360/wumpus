@@ -63,7 +63,7 @@ public class GameBoard {
                 }
             }
         } else {
-            System.out.println("Érvénytelen sor vagy méret.");
+            System.out.println("Ervenytelen sor vagy meret.");
         }
     }
 

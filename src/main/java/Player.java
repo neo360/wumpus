@@ -50,7 +50,7 @@ public class Player {
     public GameBoard getGameBoard() { return this.gameBoard; }
 
     public void move() {
-        // Ellenőrizze, hogy a játékos mozgása lehetséges-e
+        // Ellenőrizzuk, hogy a játékos mozgása lehetséges-e
         int newRow = gameBoard.getPlayerRow();
         int newCol = gameBoard.getPlayerCol();
 
@@ -69,14 +69,14 @@ public class Player {
                 break;
         }
 
-        // Ellenőrizze, hogy a célmező érvényes-e
+        // Ellenőrizzuk, hogy a célmező érvényes-e
         if (isValidMove(newRow, newCol)) {
             // Ha érvényes, akkor frissítse a játékost a célmezőre
             gameBoard.setPlayerPosition(newRow, newCol, gameBoard.getPlayerDirection());
             numberOfSteps++;
-            System.out.println("A játékos sikeresen lépett.");
+            System.out.println("A jatekos sikeresen lepett.");
         } else {
-            System.out.println("A játékos nem tud ide lépni, mert fal vagy a pálya szélén van.");
+            System.out.println("A jatekos nem tud ide lepni, mert fal vagy a palya szelen van.");
         }
     }
 
@@ -97,7 +97,7 @@ public class Player {
                 break;
         }
         numberOfSteps++;
-        System.out.println("A játékos jobbra fordult.");
+        System.out.println("A jatekos jobbra fordult.");
     }
 
 
@@ -118,7 +118,7 @@ public class Player {
                 break;
         }
         numberOfSteps++;
-        System.out.println("A játékos balra fordult.");
+        System.out.println("A jatekos balra fordult.");
     }
 
     public void shoot() {
@@ -149,9 +149,9 @@ public class Player {
                 if (gameBoard.getCell(row, col) == 'U') {
                     gameBoard.setCell(row, col, '_');
                     score++;
-                    System.out.println("Gratulálok, eltaláltad a wumpuszt!");
+                    System.out.println("Gratulalok, eltalaltad a wumpuszt!");
                 } else {
-                    System.out.println("A lövedék a semmibe veszett.");
+                    System.out.println("A lovedek a semmibe veszett.");
                 }
 
                 // Csökkentjük a nyilak számát
@@ -159,10 +159,10 @@ public class Player {
                     arrows--;
                 }
             } else {
-                System.out.println("A lövés nem érvényes, mert a célmező fal vagy a pálya szélén van.");
+                System.out.println("A loves nem ervenyes, mert a celmezo fal vagy a palya szelen van.");
             }
         } else {
-            System.out.println("Nincs több nyílad!");
+            System.out.println("Nincs tobb nyilad!");
         }
     }
 
@@ -174,7 +174,7 @@ public class Player {
         if (gameBoard.getCell(row, col) == 'G') {
             // Felvesszük az aranyat és beállítjuk, hogy a játékosnak van aranya
             gameBoard.setCell(row, col, '_');
-            System.out.println("Aranyat szereztél!");
+            System.out.println("Aranyat szereztel!");
         } else {
             System.out.println("Itt nincs arany, nem tudsz felvenni.");
         }
@@ -204,10 +204,8 @@ public class Player {
     private boolean isValidMove(int row, int col) {
 
         // Itt ellenorizzuk hogy a hos nem-e lepett wumpusra
-        if (gameBoard.getCell(row,col) == 'P') {
-            if (arrows > 0) {
+        if (gameBoard.getCell(row,col) == 'P' && arrows > 0) {
                 arrows--;
-            }
         }
 
         // Ellenőrizuk, hogy a célmezőre valo lepes érvényes

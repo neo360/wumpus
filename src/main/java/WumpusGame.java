@@ -22,19 +22,19 @@ public class WumpusGame {
         // Főmenü
         while (true) {
             // Alapmenü kiírása
-            System.out.println("1. Fájlból beolvasás");
-            System.out.println("2. Adatbázisból betöltés");
-            System.out.println("3. Adatbázisba mentés");
-            System.out.println("4. Játszás");
-            System.out.println("5. Kilépés");
+            System.out.println("1. Fajlbol beolvasas");
+            System.out.println("2. Adatbazisbol betoltes");
+            System.out.println("3. Adatbazisba mentes");
+            System.out.println("4. Jatszas");
+            System.out.println("5. Kilepes");
 
             // Felhasználó választása bekérése
             int selectedOption;
             try {
-                System.out.print("Kérem, válasszon egy opciót (1-5): ");
+                System.out.print("Kerem, valasszon egy opciot (1-5): ");
                 selectedOption = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Érvénytelen választás. Kérem, adjon meg egy érvényes számot.");
+                System.out.println("Ervenytelen valasztas. Kerem, adjon meg egy ervenyes szamot.");
                 continue;
             }
 
@@ -48,13 +48,13 @@ public class WumpusGame {
                     break;
                 case 2:
                     // Adatbázisból betöltés
-                    System.out.println("Felhasználói pontszám betöltése az adatbázisból...");
+                    System.out.println("Felhasznaloi pontszam betoltese az adatbazisbol...");
                     int loadedScore = dbHandler.loadFromDatabase(felhasznaloNev);
-                    System.out.println("Felhasználói pontszám: " + loadedScore);
+                    System.out.println("Felhasznaloi pontszam: " + loadedScore);
                     break;
                 case 3:
                     // Adatbázisba mentés
-                    System.out.println("Felhasználói pontszám mentése az adatbázisba...");
+                    System.out.println("Felhasznaloi pontszam mentese az adatbazisba...");
                     dbHandler.saveToDatabase(felhasznaloNev, player.getScore());
                     break;
                 case 4:
@@ -66,7 +66,7 @@ public class WumpusGame {
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Érvénytelen választás. Kérem, válasszon újra.");
+                    System.out.println("Ervenytelen valasztas. Kerem, valasszon ujra.");
             }
         }
     }
@@ -128,7 +128,7 @@ public class WumpusGame {
             player.printStatus();
 
             // Játékos lépéseinek bekérése
-            System.out.print("Válasszon akciót (Lépés - L, Jobbra fordulás - J, Balra fordulás - B, Lövés - S, Arany felvétele - A, Kilépés (Feladas) - K): ");
+            System.out.print("Valasszon akciot (Lepes - L, Jobbra fordulas - J, Balra fordulas - B, Loves - S, Arany felvetele - A, Kilepes (Feladas) - K): ");
             String action = scanner.nextLine().toUpperCase();
 
             // Végrehajtjuk a kiválasztott akciót
@@ -150,20 +150,20 @@ public class WumpusGame {
                     break;
                 case "K":
                     // Kilépés a játékból
-                    System.out.println("Kiléptél a játékból.");
+                    System.out.println("Kileptel a jatekbol.");
                     return;
                 default:
-                    System.out.println("Érvénytelen akció. Kérem, válasszon újra.");
+                    System.out.println("Ervenytelen akcio. Kerem, valasszon ujra.");
             }
         }
 
         // Játék vége
         if (player.isAlive() && player.hasGold()) {
-            System.out.println("Gratulálok, teljesítetted a küldetést!");
+            System.out.println("Gratulalok, teljesitetted a kuldetest!");
             System.out.println("Pontszamod: " + (player.getScore() + 10) + " pont. 1 pont jar wumpusonkent es 10 pont az arany felszedesert. ");
             System.out.println("Lepeseid szama: " + player.getNumberOfSteps());
         } else {
-            System.out.println("Játék vége. Vagy wumpusra leptel vagy feladtad.");
+            System.out.println("Jatek vege. Vagy wumpusra leptel vagy feladtad.");
         }
     }
 }
