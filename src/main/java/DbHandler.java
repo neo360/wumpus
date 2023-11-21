@@ -20,7 +20,7 @@ public class DbHandler {
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new UncheckedSqlException(e);
         }
     }
 
@@ -35,7 +35,7 @@ public class DbHandler {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new UncheckedSqlException(e);
         }
         return 0;
     }
@@ -54,7 +54,7 @@ public class DbHandler {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new UncheckedSqlException(e);
         }
 
         return highScores;
