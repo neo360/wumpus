@@ -3,9 +3,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
 class PlayerTest {
 
     private GameBoard gameBoardMock;
@@ -131,7 +128,6 @@ class PlayerTest {
         when(gameBoardMock.getSize()).thenReturn(3);
         when(gameBoardMock.getCell(0, 0)).thenReturn('W');
 
-        int initialNumberOfSteps = player.getNumberOfSteps();
         player.move();
         assertEquals(1, player.getNumberOfSteps());
     }
@@ -252,16 +248,15 @@ class PlayerTest {
         when(gameBoardMock.getPlayerCol()).thenReturn(1);
         when(gameBoardMock.getPlayerDirection()).thenReturn('E');
         when(gameBoardMock.getSize()).thenReturn(3);
-        when(gameBoardMock.getCell(1, 2)).thenReturn('_'); // 'U' field is not present in this cell
+        when(gameBoardMock.getCell(1, 2)).thenReturn('_');
 
         int initialScore = player.getScore();
         int initialArrows = player.getArrows();
 
         player.shoot();
 
-        assertEquals(initialScore, player.getScore()); // Score should remain unchanged
-        assertEquals(initialArrows - 1, player.getArrows()); // One arrow is used
-        // Other assertions if needed
+        assertEquals(initialScore, player.getScore());
+        assertEquals(initialArrows - 1, player.getArrows());
     }
 
     @Test
@@ -278,7 +273,6 @@ class PlayerTest {
 
         assertEquals(initialScore, player.getScore());
         assertEquals(initialArrows, player.getArrows());
-        // Egyéb ellenőrzések a változásokhoz
     }
 
     @Test
@@ -294,7 +288,6 @@ class PlayerTest {
 
         assertEquals(initialScore, player.getScore());
         assertEquals(initialArrows, player.getArrows());
-        // Egyéb ellenőrzések a változásokhoz
     }
 
     @Test
@@ -310,7 +303,7 @@ class PlayerTest {
         player.pickUpGold();
 
         verify(gameBoardMock).setCell(1, 1, '_');
-        assertEquals(initialArrows, player.getArrows()); // Arrows should remain unchanged
+        assertEquals(initialArrows, player.getArrows());
     }
 
     @Test
@@ -326,7 +319,7 @@ class PlayerTest {
         player.pickUpGold();
 
         verify(gameBoardMock, never()).setCell(anyInt(), anyInt(), anyChar());
-        assertEquals(initialArrows, player.getArrows()); // Arrows should remain unchanged
+        assertEquals(initialArrows, player.getArrows());
     }
 
     @Test
@@ -386,6 +379,4 @@ class PlayerTest {
         Player player = new Player(gameBoardMock, 3);
         assertTrue(player.isAlive());
     }
-    // További tesztek a maradék metódusokhoz (turnRight, turnLeft, shoot, pickUpGold, hasGold, isAlive, printStatus, stb.)
-    // Ahhoz, hogy a tesztek 90%-os lefedettséget érjenek el, számos más forgatókönyvet is le kell fedni, ezek csak néhány példa.
 }

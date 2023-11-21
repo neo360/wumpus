@@ -3,6 +3,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DbHandler {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/wumpus_game_db";
@@ -36,5 +38,25 @@ public class DbHandler {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    public List<PlayerScore> getHighScores() {
+        List<PlayerScore> highScores = new ArrayList<>();
+
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+            String selectQuery = "SELECT username, score FROM game_data ORDER BY score DESC";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    String username = resultSet.getString("username");
+                    int score = resultSet.getInt("score");
+                    highScores.add(new PlayerScore(username, score));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return highScores;
     }
 }

@@ -52,7 +52,7 @@ class GameBoardTest {
 
     @Test
     void testGetBoardNotNull() {
-        // Teszteljük, hogy az getBoard() nem ad vissza null értéket
+        // Teszteljük, hogy a getBoard() nem ad vissza null értéket
         assertNotNull(gameBoard.getBoard());
     }
 }

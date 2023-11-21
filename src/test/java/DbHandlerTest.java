@@ -3,8 +3,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class DbHandlerTest {
 
@@ -47,12 +52,12 @@ class DbHandlerTest {
         assertThrows(SQLException.class, () -> {
             String invalidURL = "invalid_url";
             dbHandler.saveToDatabase("test_user", 100);
-            DriverManager.getConnection(invalidURL); // SQLException-ra szimulálás
+            DriverManager.getConnection(invalidURL);
         });
     }
 
     @Test
-    void testLoadFromDatabaseExistingUser() throws SQLException {
+    void testLoadFromDatabaseExistingUser() {
         String username = "existing_user";
         int score = 150;
         dbHandler.saveToDatabase(username, score);
@@ -65,5 +70,31 @@ class DbHandlerTest {
     void testLoadFromDatabaseNonExistingUser() {
         int loadedScore = dbHandler.loadFromDatabase("non_existing_user");
         assertEquals(0, loadedScore);
+    }
+
+    @Test
+    void testGetHighScores_ShouldReturnListOfPlayerScores() throws SQLException {
+        DbHandler dbHandler = new DbHandler();
+        Connection mockedConnection = mock(Connection.class);
+        PreparedStatement mockedPreparedStatement = mock(PreparedStatement.class);
+        ResultSet mockedResultSet = mock(ResultSet.class);
+
+        List<PlayerScore> expectedScores = new ArrayList<>();
+        expectedScores.add(new PlayerScore("user1", 100));
+        expectedScores.add(new PlayerScore("user2", 90));
+
+        when(mockedConnection.prepareStatement(anyString())).thenReturn(mockedPreparedStatement);
+        when(mockedPreparedStatement.executeQuery()).thenReturn(mockedResultSet);
+        when(mockedResultSet.next()).thenReturn(true).thenReturn(true).thenReturn(false); // Hamis, ha nincs további eredmény
+        when(mockedResultSet.getString("username")).thenReturn("user1").thenReturn("user2");
+        when(mockedResultSet.getInt("score")).thenReturn(100).thenReturn(90);
+
+        List<PlayerScore> actualScores = dbHandler.getHighScores();
+
+        assertEquals(actualScores.size(), actualScores.size());
+        for (int i = 0; i < expectedScores.size(); i++) {
+            assertEquals(actualScores.get(i).getUsername(), actualScores.get(i).getUsername());
+            assertEquals(actualScores.get(i).getScore(), actualScores.get(i).getScore());
+        }
     }
 }
