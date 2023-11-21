@@ -89,7 +89,7 @@ class DbHandlerTest {
         when(mockedResultSet.getString("username")).thenReturn("user1").thenReturn("user2");
         when(mockedResultSet.getInt("score")).thenReturn(100).thenReturn(90);
 
-        List<PlayerScore> actualScores = dbHandler.getHighScores();
+        List<PlayerScore> actualScores = dbHandler.getHighestScoresForAllUsers();
 
         assertEquals(actualScores.size(), actualScores.size());
         for (int i = 0; i < expectedScores.size(); i++) {

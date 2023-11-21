@@ -63,7 +63,7 @@ public class WumpusGame {
                     break;
                 case 5:
                     // High score táblázat megjelenítése
-                    List<PlayerScore> highScores = dbHandler.getHighScores();
+                    List<PlayerScore> highScores = dbHandler.getHighestScoresForAllUsers();
                     System.out.println("High Score Tablazat:");
                     System.out.println("------------------------------");
                     System.out.println("Felhasznalo név | Pontszam");

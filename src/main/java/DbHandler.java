@@ -40,23 +40,23 @@ public class DbHandler {
         return 0;
     }
 
-    public List<PlayerScore> getHighScores() {
-        List<PlayerScore> highScores = new ArrayList<>();
+    public List<PlayerScore> getHighestScoresForAllUsers() {
+        List<PlayerScore> highestScores = new ArrayList<>();
 
         try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
-            String selectQuery = "SELECT username, score FROM game_data ORDER BY score DESC";
+            String selectQuery = "SELECT username, MAX(score) AS highest_score FROM game_data GROUP BY username";
             try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
                     String username = resultSet.getString("username");
-                    int score = resultSet.getInt("score");
-                    highScores.add(new PlayerScore(username, score));
+                    int highestScore = resultSet.getInt("highest_score");
+                    highestScores.add(new PlayerScore(username, highestScore));
                 }
             }
         } catch (SQLException e) {
             throw new UncheckedSqlException(e);
         }
 
-        return highScores;
+        return highestScores;
     }
 }
