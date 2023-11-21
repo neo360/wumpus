@@ -93,7 +93,8 @@ public class GameLogic {
         // Játék vége
         if (player.isAlive() && player.hasGold()) {
             System.out.println("Gratulalok, teljesitetted a kuldetest!");
-            System.out.println("Pontszamod: " + (player.getScore() + 10) + " pont. 1 pont jar wumpusonkent es 10 pont az arany felszedesert. ");
+            player.setScore(player.getScore() + 10);
+            System.out.println("Pontszamod: " + (player.getScore()) + " pont. 1 pont jar wumpusonkent es 10 pont az arany felszedesert. ");
             System.out.println("Lepeseid szama: " + player.getNumberOfSteps());
         } else {
             System.out.println("Jatek vege. Vagy wumpusra leptel vagy feladtad.");

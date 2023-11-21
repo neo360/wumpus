@@ -1,7 +1,4 @@
-import java.io.InputStream;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class WumpusGame {
@@ -61,6 +58,7 @@ public class WumpusGame {
                     break;
                 case 4:
                     // Játszás
+                    player.setScore(0);
                     GameLogic.playGame(player);
                     break;
                 case 5:
