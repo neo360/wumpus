@@ -1,0 +1,28 @@
+
+q
+java:S1450"VRemove the "hasGold" field and declare it as a local variable in the relevant methods.(ÁÙ¦“ûÿÿÿÿ
+<	java:S1319""Add a default case to this switch.(í•£öúÿÿÿÿ
+N	java:S106M"9Replace this use of System.out or System.err by a logger.(„ƒƒü
+M	java:S106O"9Replace this use of System.out or System.err by a logger.(Ñ•Ç 
+<	java:S131U""Add a default case to this switch.(í•£öúÿÿÿÿ
+S	java:S106d"9Replace this use of System.out or System.err by a logger.(©¡ôÍøÿÿÿÿ
+<	java:S131j""Add a default case to this switch.(í•£öúÿÿÿÿ
+S	java:S106y"9Replace this use of System.out or System.err by a logger.(Ó‘”üÿÿÿÿ
+=	java:S131ƒ""Add a default case to this switch.(í•£öúÿÿÿÿ
+T	java:S106˜"9Replace this use of System.out or System.err by a logger.(¼ôÀÐýÿÿÿÿ
+T	java:S106š"9Replace this use of System.out or System.err by a logger.(ùÊÂ§þÿÿÿÿ
+T	java:S106¢"9Replace this use of System.out or System.err by a logger.(‹Ïœ—øÿÿÿÿ
+T	java:S106¥"9Replace this use of System.out or System.err by a logger.(Õš¯¾üÿÿÿÿ
+O	java:S106±"9Replace this use of System.out or System.err by a logger.( ¦Ê
+O	java:S106³"9Replace this use of System.out or System.err by a logger.(•ŒÌ‘
+T	java:S106Ã"9Replace this use of System.out or System.err by a logger.(•›·âþÿÿÿÿ
+T	java:S106Ä"9Replace this use of System.out or System.err by a logger.(›«Ü£úÿÿÿÿ
+O	java:S106Å"9Replace this use of System.out or System.err by a logger.(ØíÈæ
+O	java:S106Æ"9Replace this use of System.out or System.err by a logger.(Öòˆó
+O	java:S106Ç"9Replace this use of System.out or System.err by a logger.(ò—ëŠ
+N	java:S106È"9Replace this use of System.out or System.err by a logger.(ô­íy
+T	java:S106É"9Replace this use of System.out or System.err by a logger.(ƒ‚À¥ÿÿÿÿÿ
+F
+java:S1068"+Remove this unused "isAlive" private field.(‹Ê€ˆûÿÿÿÿ
+F
+java:S1068"+Remove this unused "hasGold" private field.(ÁÙ¦“ûÿÿÿÿ
