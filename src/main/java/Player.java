@@ -203,7 +203,7 @@ public class Player {
 
     private boolean isValidMove(int row, int col) {
 
-        // Itt ellenorizzuk hogy a hos nem-e lepett wumpusra
+        // Itt ellenorizzuk hogy a hos nem-e lepett verembe
         if (gameBoard.getCell(row,col) == 'P' && arrows > 0) {
                 arrows--;
         }
